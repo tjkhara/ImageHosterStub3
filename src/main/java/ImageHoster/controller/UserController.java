@@ -22,8 +22,16 @@ public class UserController {
         //Complete this method
         //Observe User and UserProfile models implemented
         //Declare an object of User class and UserProfile class
+        User user = new User();
+        UserProfile userprofile = new UserProfile();
+
         //Set the profile of the user as UserProfile type object
+        user.setProfile(userprofile);
+
         //Add user in the model and return 'users/registration.html'
+        model.addAttribute("user",user);
+
+        return "users/registration";
     }
 
     //This controller method is called when the request pattern is of type 'users/registration' and also the incoming request is of POST type
@@ -31,6 +39,8 @@ public class UserController {
     public String registerUser(User user) {
         //Complete this method
         //Call the business logic which currently does not store the details of the user in the database
+        userService.registerUser(user);
         //After registration, again redirect to the registration page
+        return "redirect:/users/registration";
     }
 }
